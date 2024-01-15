@@ -1,17 +1,72 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>
-      Tab 1
-    </ion-title>
+    <ion-title>Tab 1</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+<!-- show imageText if exist -->
+<ion-content padding>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Image Text</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{imageText}}
+    </ion-card-content>
+  </ion-card>
 </ion-content>
+
+<!-- show food list on the screen if not empty -->
+<ion-content padding>
+  <ion-list>
+    <ion-list-header>
+      <ion-label>Receipt:</ion-label>
+      <ion-button (click)="onSubmit()" >Add to inventory</ion-button>
+    </ion-list-header>
+    <ion-item *ngFor="let p of foods" class="ion-text-wrap">
+      <ion-grid>
+        <!-- List all the foods with customizable amount -->
+        <ion-row>
+          <ion-col>
+            <ion-label>{{p.name}}</ion-label>
+          </ion-col>
+          <ion-col >
+            <ion-input (ionChange)="updateAmount(p, $event)" label="Amount:" type="number" value={{p.amount}}></ion-input>
+          </ion-col>
+          <ion-col>
+            <ion-datetime-button  datetime={{p.name}} ></ion-datetime-button>
+            <ion-modal [keepContentsMounted]="true">
+              <ng-template>
+                <ion-datetime (ionChange)="updateDate(p, $event)" id={{p.name}} value={{p.date}}></ion-datetime>
+              </ng-template>
+            </ion-modal>
+          </ion-col>
+          <ion-col class="ion-text-right">
+            <ion-button (click)="removeFood(p)" color="danger">Remove</ion-button>
+          </ion-col>
+        </ion-row>
+        
+      </ion-grid>
+    </ion-item>
+  </ion-list>
+  
+</ion-content>
+
+
+<ion-content padding>
+  
+  <ion-content>
+    <ion-fab vertical="bottom" horizontal="center" slot="fixed">
+      <ion-fab-button (click)="getPicture()">
+        <ion-icon name="camera"></ion-icon>
+      </ion-fab-button>
+    </ion-fab>
+  </ion-content>
+
+ 
+
+
+  <!-- Detected text view -->
+  
+

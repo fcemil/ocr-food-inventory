@@ -56,7 +56,7 @@ updateDate(_t29: Food,$event: Event) {
     const worker = await Tesseract.createWorker('nld');
     worker.recognize(this.selectedImage)
       .then(result => {
-        this.imageText = this.defaultText;
+        this.imageText = result.data.text;
         // to lowercase
         this.imageText = this.imageText.toLowerCase();
         // split on spaces

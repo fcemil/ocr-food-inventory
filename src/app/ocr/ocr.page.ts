@@ -8,10 +8,10 @@ import * as Tesseract from 'tesseract.js'
 
 @Component({
   selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  templateUrl: 'ocr.page.html',
+  styleUrls: ['ocr.page.scss']
 })
-export class Tab1Page {
+export class OcrPage {
 
 removeFood(_t33: Food) {
   this.foods = this.foods.filter(food => food !== _t33);
